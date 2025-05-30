@@ -76,7 +76,7 @@ const Index = () => {
       id: 8,
       name: "Key Fob",
       price: 29,
-      image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Accessories",
       description: "Elegant leather key fob with metal ring. Perfect gift or personal accessory."
     }

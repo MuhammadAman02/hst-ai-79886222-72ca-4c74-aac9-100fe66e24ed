@@ -14,7 +14,7 @@ const Index = () => {
 
   console.log('Index page rendered with cart items:', cartItems.length);
 
-  // Sample products data
+  // Sample products data with generated images
   const products: Product[] = [
     {
       id: 1,
@@ -28,7 +28,7 @@ const Index = () => {
       id: 2,
       name: "Executive Briefcase",
       price: 449,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Bags",
       description: "Professional leather briefcase with multiple compartments. Ideal for business professionals who value style and functionality."
     },
@@ -44,7 +44,7 @@ const Index = () => {
       id: 4,
       name: "Leather Belt",
       price: 79,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Accessories",
       description: "Premium leather belt with reversible design. Available in black and brown with polished buckle."
     },
@@ -52,7 +52,7 @@ const Index = () => {
       id: 5,
       name: "Crossbody Bag",
       price: 199,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Handbags",
       description: "Stylish crossbody bag perfect for travel. Features adjustable strap and secure zipper closure."
     },
@@ -60,7 +60,7 @@ const Index = () => {
       id: 6,
       name: "Card Holder",
       price: 45,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Wallets",
       description: "Minimalist leather card holder. Slim design holds up to 8 cards with easy access."
     },
@@ -68,7 +68,7 @@ const Index = () => {
       id: 7,
       name: "Travel Duffel",
       price: 349,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Bags",
       description: "Spacious leather duffel bag for weekend trips. Features reinforced handles and shoulder strap."
     },
@@ -76,7 +76,7 @@ const Index = () => {
       id: 8,
       name: "Key Fob",
       price: 29,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Accessories",
       description: "Elegant leather key fob with metal ring. Perfect gift or personal accessory."
     }

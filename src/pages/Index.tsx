@@ -36,7 +36,7 @@ const Index = () => {
       id: 3,
       name: "Vintage Wallet",
       price: 89,
-      image: "/placeholder.svg",
+      image: "https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/3dd0aa11-9b12-407e-863e-fa01c2b4d1e6.png",
       category: "Wallets",
       description: "Compact leather wallet with RFID protection. Features multiple card slots and a bill compartment."
     },

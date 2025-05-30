@@ -14,7 +14,7 @@ const Index = () => {
 
   console.log('Index page rendered with cart items:', cartItems.length);
 
-  // Sample products data with generated images
+  // Sample products data with generated images (key fob removed)
   const products: Product[] = [
     {
       id: 1,
@@ -71,14 +71,6 @@ const Index = () => {
       image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Bags",
       description: "Spacious leather duffel bag for weekend trips. Features reinforced handles and shoulder strap."
-    },
-    {
-      id: 8,
-      name: "Key Fob",
-      price: 29,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
-      category: "Accessories",
-      description: "Elegant leather key fob with metal ring. Perfect gift or personal accessory."
     }
   ];
 

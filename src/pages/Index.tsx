@@ -76,7 +76,7 @@ const Index = () => {
       id: 8,
       name: "Key Fob",
       price: 29,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
+      image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Accessories",
       description: "Elegant leather key fob with metal ring. Perfect gift or personal accessory."
     }
@@ -128,6 +128,38 @@ const Index = () => {
     });
   };
 
+  const handleCheckout = () => {
+    console.log('Checkout initiated with items:', cartItems);
+    
+    if (cartItems.length === 0) {
+      toast({
+        title: "Cart is empty",
+        description: "Please add items to your cart before checking out.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Simulate checkout process
+    toast({
+      title: "Checkout initiated",
+      description: "Redirecting to secure payment...",
+    });
+
+    // Here you would typically redirect to a payment processor
+    // For demo purposes, we'll just show a success message after a delay
+    setTimeout(() => {
+      toast({
+        title: "Order placed successfully!",
+        description: `Thank you for your purchase of ${cartItems.length} item(s). Total: $${cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}`,
+      });
+      
+      // Clear cart after successful checkout
+      setCartItems([]);
+      setIsCartOpen(false);
+    }, 2000);
+  };
+
   const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
@@ -150,6 +182,7 @@ const Index = () => {
         cartItems={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
+        onCheckout={handleCheckout}
       />
       
       <Footer />

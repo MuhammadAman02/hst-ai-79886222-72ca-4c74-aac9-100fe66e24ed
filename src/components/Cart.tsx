@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Minus, Plus, Trash2, X } from 'lucide-react';
+import { Minus, Plus, Trash2, X, CreditCard } from 'lucide-react';
 import { Product } from './ProductCard';
 
 export interface CartItem extends Product {
@@ -14,9 +14,12 @@ interface CartProps {
   cartItems: CartItem[];
   onUpdateQuantity: (id: number, quantity: number) => void;
   onRemoveItem: (id: number) => void;
+  onCheckout: () => void;
 }
 
-const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }: CartProps) => {
+const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCheckout }: CartProps) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+  
   console.log('Cart rendered with items:', cartItems);
 
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -27,6 +30,19 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }: Ca
       onRemoveItem(id);
     } else {
       onUpdateQuantity(id, newQuantity);
+    }
+  };
+
+  const handleCheckout = async () => {
+    console.log('Checkout button clicked');
+    setIsProcessing(true);
+    
+    try {
+      await onCheckout();
+    } catch (error) {
+      console.error('Checkout error:', error);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -107,8 +123,22 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }: Ca
                 </div>
                 
                 <div className="space-y-3">
-                  <Button className="w-full bg-gold-500 hover:bg-gold-600 text-leather-900 font-semibold">
-                    Checkout
+                  <Button 
+                    className="w-full bg-gold-500 hover:bg-gold-600 text-leather-900 font-semibold"
+                    onClick={handleCheckout}
+                    disabled={isProcessing}
+                  >
+                    {isProcessing ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-leather-900 mr-2"></div>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="h-4 w-4 mr-2" />
+                        Checkout
+                      </>
+                    )}
                   </Button>
                   <Button variant="outline" className="w-full" onClick={onClose}>
                     Continue Shopping

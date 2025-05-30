@@ -27,9 +27,11 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-serif font-bold text-leather-800">
-              Crown Leather
-            </h1>
+            <img 
+              src="https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/a6722b78-c4d9-4094-a244-44da44c40a8d.png"
+              alt="Crown Leather Logo"
+              className="h-12 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}

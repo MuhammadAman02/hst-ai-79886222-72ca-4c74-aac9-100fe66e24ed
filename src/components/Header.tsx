@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X, Search, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -9,17 +10,22 @@ interface HeaderProps {
 
 const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
-  console.log('Header rendered with cart items:', cartItemsCount);
+  console.log('Header rendered with cart items:', cartItemsCount, 'current path:', location.pathname);
 
   const navigation = [
-    { name: 'Home', href: '#' },
-    { name: 'Bags', href: '#bags' },
-    { name: 'Wallets', href: '#wallets' },
-    { name: 'Accessories', href: '#accessories' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'Bags', href: '/bags' },
+    { name: 'Wallets', href: '/wallets' },
+    { name: 'Accessories', href: '/accessories' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
+
+  const isActivePage = (href: string) => {
+    return location.pathname === href;
+  };
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
@@ -27,23 +33,29 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img 
-              src="https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/a6722b78-c4d9-4094-a244-44da44c40a8d.png"
-              alt="Crown Leather Logo"
-              className="h-12 w-auto"
-            />
+            <Link to="/">
+              <img 
+                src="https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/a6722b78-c4d9-4094-a244-44da44c40a8d.png"
+                alt="Crown Leather Logo"
+                className="h-12 w-auto cursor-pointer"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
-                className="text-leather-700 hover:text-leather-900 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                to={item.href}
+                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                  isActivePage(item.href)
+                    ? 'text-gold-600 border-b-2 border-gold-600'
+                    : 'text-leather-700 hover:text-leather-900'
+                }`}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -92,14 +104,18 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
-                  className="text-leather-700 hover:text-leather-900 block px-3 py-2 text-base font-medium"
+                  to={item.href}
+                  className={`block px-3 py-2 text-base font-medium ${
+                    isActivePage(item.href)
+                      ? 'text-gold-600 bg-gold-50'
+                      : 'text-leather-700 hover:text-leather-900'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

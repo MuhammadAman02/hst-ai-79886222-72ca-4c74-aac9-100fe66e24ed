@@ -20,7 +20,7 @@ const Index = () => {
       id: 1,
       name: "Classic Leather Handbag",
       price: 299,
-      image: "/placeholder.svg",
+      image: "https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/a3d02df0-5b37-48cb-a51a-6616b39f1b36.png",
       category: "Handbags",
       description: "Elegant handcrafted leather handbag perfect for everyday use. Features premium Italian leather and gold-tone hardware."
     },

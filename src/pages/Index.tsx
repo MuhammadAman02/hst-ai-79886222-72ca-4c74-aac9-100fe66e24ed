@@ -14,7 +14,7 @@ const Index = () => {
 
   console.log('Index page rendered with cart items:', cartItems.length);
 
-  // Sample products data with generated images (key fob removed)
+  // Sample products data with updated images for Executive Briefcase and Travel Duffel
   const products: Product[] = [
     {
       id: 1,
@@ -28,7 +28,7 @@ const Index = () => {
       id: 2,
       name: "Executive Briefcase",
       price: 449,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
+      image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Bags",
       description: "Professional leather briefcase with multiple compartments. Ideal for business professionals who value style and functionality."
     },

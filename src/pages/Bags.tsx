@@ -43,7 +43,7 @@ const Bags = () => {
       id: 7,
       name: "Travel Duffel",
       price: 349,
-      image: "https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/655f935a-7e91-4a8c-ab0d-ea214dca07db.png",
+      image: "https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/5ee54c0d-184e-4291-b144-08906dd77ccc.png",
       category: "Bags",
       description: "Spacious leather duffel bag for weekend trips. Features reinforced handles and shoulder strap."
     }

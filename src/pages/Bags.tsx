@@ -13,7 +13,7 @@ const Bags = () => {
 
   console.log('Bags page rendered');
 
-  // Bags products only
+  // Bags products only with updated images
   const bagsProducts: Product[] = [
     {
       id: 1,
@@ -27,7 +27,7 @@ const Bags = () => {
       id: 2,
       name: "Executive Briefcase",
       price: 449,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
+      image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
       category: "Bags",
       description: "Professional leather briefcase with multiple compartments. Ideal for business professionals who value style and functionality."
     },

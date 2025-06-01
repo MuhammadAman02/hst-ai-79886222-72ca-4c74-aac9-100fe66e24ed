@@ -14,7 +14,7 @@ const Index = () => {
 
   console.log('Index page rendered with cart items:', cartItems.length);
 
-  // Sample products data with updated Executive Briefcase image
+  // Sample products data with updated Travel Duffel image
   const products: Product[] = [
     {
       id: 1,
@@ -68,7 +68,7 @@ const Index = () => {
       id: 7,
       name: "Travel Duffel",
       price: 349,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&crop=center&auto=format&q=80",
+      image: "https://hstengineer.lon1.digitaloceanspaces.com/messages/hst-ai-79886222-72ca-4c74-aac9-100fe66e24ed/attachments/655f935a-7e91-4a8c-ab0d-ea214dca07db.png",
       category: "Bags",
       description: "Spacious leather duffel bag for weekend trips. Features reinforced handles and shoulder strap."
     }

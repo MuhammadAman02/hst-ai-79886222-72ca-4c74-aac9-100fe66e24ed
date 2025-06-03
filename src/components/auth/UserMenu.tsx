@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -15,6 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 const UserMenu = () => {
   const { user, signOut } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   console.log('UserMenu rendered for user:', user?.email);
 
@@ -24,6 +26,35 @@ const UserMenu = () => {
     toast({
       title: "Signed out",
       description: "You have been signed out successfully.",
+    });
+  };
+
+  const handleOrdersClick = () => {
+    console.log('Navigating to orders page');
+    navigate('/orders');
+  };
+
+  const handleProfileClick = () => {
+    console.log('Profile clicked - functionality to be implemented');
+    toast({
+      title: "Coming soon",
+      description: "Profile management is coming soon!",
+    });
+  };
+
+  const handleWishlistClick = () => {
+    console.log('Wishlist clicked - functionality to be implemented');
+    toast({
+      title: "Coming soon",
+      description: "Wishlist feature is coming soon!",
+    });
+  };
+
+  const handleSettingsClick = () => {
+    console.log('Settings clicked - functionality to be implemented');
+    toast({
+      title: "Coming soon",
+      description: "Settings page is coming soon!",
     });
   };
 
@@ -58,22 +89,22 @@ const UserMenu = () => {
         
         <DropdownMenuSeparator />
         
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer" onClick={handleProfileClick}>
           <User className="mr-2 h-4 w-4" />
           <span>Profile</span>
         </DropdownMenuItem>
         
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer" onClick={handleOrdersClick}>
           <Package className="mr-2 h-4 w-4" />
           <span>Orders</span>
         </DropdownMenuItem>
         
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer" onClick={handleWishlistClick}>
           <Heart className="mr-2 h-4 w-4" />
           <span>Wishlist</span>
         </DropdownMenuItem>
         
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer" onClick={handleSettingsClick}>
           <Settings className="mr-2 h-4 w-4" />
           <span>Settings</span>
         </DropdownMenuItem>

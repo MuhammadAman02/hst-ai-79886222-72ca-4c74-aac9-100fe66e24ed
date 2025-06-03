@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Minus, Plus, Trash2, X, CreditCard } from 'lucide-react';
 import { Product } from './ProductCard';
+import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
 
 export interface CartItem extends Product {
   quantity: number;
@@ -19,6 +22,9 @@ interface CartProps {
 
 const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCheckout }: CartProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { toast } = useToast();
   
   console.log('Cart rendered with items:', cartItems);
 
@@ -34,13 +40,43 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCh
   };
 
   const handleCheckout = async () => {
-    console.log('Checkout button clicked');
+    console.log('Stripe checkout initiated');
+    
+    if (cartItems.length === 0) {
+      toast({
+        title: "Cart is empty",
+        description: "Please add items to your cart before checking out.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!user) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to complete your purchase.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsProcessing(true);
     
     try {
-      await onCheckout();
+      // Close cart and navigate to checkout page
+      onClose();
+      navigate('/checkout', {
+        state: { cartItems }
+      });
+      
+      console.log('Navigated to Stripe checkout page');
     } catch (error) {
-      console.error('Checkout error:', error);
+      console.error('Checkout navigation error:', error);
+      toast({
+        title: "Checkout error",
+        description: "Failed to proceed to checkout. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsProcessing(false);
     }
@@ -117,32 +153,54 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem, onCh
               </div>
 
               <div className="border-t pt-6">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-lg font-semibold text-leather-800">Total:</span>
-                  <span className="text-xl font-bold text-leather-800">${total.toFixed(2)}</span>
-                </div>
-                
-                <div className="space-y-3">
-                  <Button 
-                    className="w-full bg-gold-500 hover:bg-gold-600 text-leather-900 font-semibold"
-                    onClick={handleCheckout}
-                    disabled={isProcessing}
-                  >
-                    {isProcessing ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-leather-900 mr-2"></div>
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                        <CreditCard className="h-4 w-4 mr-2" />
-                        Checkout
-                      </>
-                    )}
-                  </Button>
-                  <Button variant="outline" className="w-full" onClick={onClose}>
-                    Continue Shopping
-                  </Button>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold text-leather-800">Subtotal:</span>
+                    <span className="text-xl font-bold text-leather-800">${total.toFixed(2)}</span>
+                  </div>
+                  
+                  <div className="text-sm text-gray-600">
+                    <div className="flex justify-between">
+                      <span>Tax (8%):</span>
+                      <span>${(total * 0.08).toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Shipping:</span>
+                      <span>Free</span>
+                    </div>
+                    <div className="flex justify-between font-medium text-leather-800 pt-2 border-t">
+                      <span>Total:</span>
+                      <span>${(total * 1.08).toFixed(2)}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Button 
+                      className="w-full bg-gold-500 hover:bg-gold-600 text-leather-900 font-semibold"
+                      onClick={handleCheckout}
+                      disabled={isProcessing}
+                    >
+                      {isProcessing ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-leather-900 mr-2"></div>
+                          Processing...
+                        </>
+                      ) : (
+                        <>
+                          <CreditCard className="h-4 w-4 mr-2" />
+                          Secure Checkout with Stripe
+                        </>
+                      )}
+                    </Button>
+                    <Button variant="outline" className="w-full" onClick={onClose}>
+                      Continue Shopping
+                    </Button>
+                  </div>
+                  
+                  <div className="text-center text-xs text-gray-500">
+                    <p>Secure payment powered by Stripe</p>
+                    <p>SSL encrypted • PCI compliant</p>
+                  </div>
                 </div>
               </div>
             </>

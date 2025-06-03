@@ -11,12 +11,13 @@ import Wallets from "./pages/Wallets";
 import Accessories from "./pages/Accessories";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Orders from "./pages/Orders";
 import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  console.log('App component initialized with routing, authentication, and admin panel');
+  console.log('App component initialized with routing, authentication, admin panel, and orders page');
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/accessories" element={<Accessories />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/admin" element={<Admin />} />
               </Routes>
             </BrowserRouter>
